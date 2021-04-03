@@ -11,6 +11,7 @@ public class Main {
         mainCheck();
 
         //проверка задания 2
+        System.out.println("проверка задания 2");
         testVars();
 
         //проверка задания 3
@@ -39,8 +40,8 @@ public class Main {
         System.out.println("проверка задания 7");
         printName("Джон");
 
-        //проверка задания 10
-        System.out.println("проверка задания 10");
+        //проверка задания 8
+        System.out.println("проверка задания 8");
         isLeapYear(-20);
         isLeapYear(1);
         isLeapYear(4);
@@ -95,10 +96,7 @@ public class Main {
     // ДЗ пункт 4. Написать метод, принимающий на вход два целых числа и проверяющий,
     // что их сумма лежит в пределах от 10 до 20 (включительно), если да – вернуть true, в противном случае – false.
     public static boolean isSumBetweenTenAndTwenty(int a, int b) {
-        if ((a + b) >= 10 && (a + b) <= 20) {
-            return true;
-        } else return false;
-
+            return ((a + b) >= 10 && (a + b) <= 20);
     }
 
     // ДЗ пункт 5. Написать метод, которому в качестве параметра передается целое число,
