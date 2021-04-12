@@ -65,8 +65,8 @@ public class GuessNumber {
     }
 
     private static boolean checkAnswer(int hiddenDigit, int playerAnswer) {
-        if (playerAnswer < 0 && playerAnswer > 9) System.out.println("Ответ может быть только в диапазоне от 0 до 9");
-        else if (playerAnswer == hiddenDigit) {
+        if ((playerAnswer < 0 || playerAnswer > 9)) { System.out.println("Ответ может быть только в диапазоне от 0 до 9");
+        } else if (playerAnswer == hiddenDigit) {
             return true;
         } else if
         (playerAnswer > hiddenDigit) {
@@ -87,6 +87,7 @@ public class GuessNumber {
                 a = in.nextInt();
                 isValid = true;
             } else {
+                System.out.println("Введено не целочисленное значение или текст.");
                 in.next();
             }
         } while (!isValid);
