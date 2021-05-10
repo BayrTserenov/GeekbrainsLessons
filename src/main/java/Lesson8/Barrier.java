@@ -9,35 +9,7 @@
 
 package Lesson8;
 
-public class Main {
-    public static void main(String[] args) {
-        Creature[] creatures = new Creature[3];
-        creatures[0] = new Human(50,3);
-        creatures[1] = new Robot(100,5);
-        creatures[2] = new Cat(2,2);
-
-        Barrier[] barriers = new Barrier[8];
-        barriers[0] = new Wall(1);
-        barriers[1] = new Road(1);
-        barriers[2] = new Wall(3);
-        barriers[3] = new Road(50);
-        barriers[4] = new Wall(5);
-        barriers[5] = new Road(100);
-        barriers[6] = new Wall(6);
-        barriers[7] = new Road(106);
-
-        for (Barrier barrier : barriers) {
-            for (Creature creature : creatures) {
-                if (creature.passBarrier(barrier)) {}
-                else continue;
-            }
-        }
-
-        System.out.println("Количество преодоленных человеком препятствий: "+ Human.barrierPassedHuman);
-        System.out.println("Количество преодоленных котиком препятствий: "+ Cat.barrierPassedCat);
-        System.out.println("Количество преодоленных человеком препятствий: "+ Robot.barrierPassedRobot);
-
-
-
-    }
+public abstract class Barrier {
+    PassMethod passMethod;
+    int size;
 }

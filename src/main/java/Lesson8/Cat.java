@@ -9,35 +9,43 @@
 
 package Lesson8;
 
-public class Main {
-    public static void main(String[] args) {
-        Creature[] creatures = new Creature[3];
-        creatures[0] = new Human(50,3);
-        creatures[1] = new Robot(100,5);
-        creatures[2] = new Cat(2,2);
+public class Cat extends Creature implements PassingBarrier {
+    public static int barrierPassedCat = 0;
+    int maxRun;
+    int maxJump;
 
-        Barrier[] barriers = new Barrier[8];
-        barriers[0] = new Wall(1);
-        barriers[1] = new Road(1);
-        barriers[2] = new Wall(3);
-        barriers[3] = new Road(50);
-        barriers[4] = new Wall(5);
-        barriers[5] = new Road(100);
-        barriers[6] = new Wall(6);
-        barriers[7] = new Road(106);
+    public Cat(int maxrun, int maxjump) {
+        this.maxRun = maxrun;
+        this.maxJump = maxjump;
+    }
 
-        for (Barrier barrier : barriers) {
-            for (Creature creature : creatures) {
-                if (creature.passBarrier(barrier)) {}
-                else continue;
+    public int getMaxRun() {
+        return maxRun;
+    }
+
+    public int getMaxJump() {
+        return maxJump;
+    }
+
+
+    @Override
+    public boolean passBarrier(Barrier barrier) {
+        switch (barrier.passMethod) {
+            case JUMP -> {
+                if (barrier.size <= this.getMaxJump()) {
+                    System.out.println("Але-гоп! Котик перепрыгнул стену");
+                    barrierPassedCat++;
+                    return true;
+                } else System.out.println("Котик не смог перепрыгнуть стену");
+            }
+            case RUN -> {
+                if (barrier.size <= this.getMaxRun()) {
+                    System.out.println("Вжик-вжик! Котик пробежал по дороге до конца");
+                    barrierPassedCat++;
+                    return true;
+                } else System.out.println("Котик не смог перепрыгнуть стену");
             }
         }
-
-        System.out.println("Количество преодоленных человеком препятствий: "+ Human.barrierPassedHuman);
-        System.out.println("Количество преодоленных котиком препятствий: "+ Cat.barrierPassedCat);
-        System.out.println("Количество преодоленных человеком препятствий: "+ Robot.barrierPassedRobot);
-
-
-
+        return false;
     }
 }
