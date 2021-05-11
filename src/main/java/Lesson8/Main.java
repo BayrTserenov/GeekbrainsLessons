@@ -12,9 +12,9 @@ package Lesson8;
 public class Main {
     public static void main(String[] args) {
         Creature[] creatures = new Creature[3];
-        creatures[0] = new Human(50,3);
-        creatures[1] = new Robot(100,5);
-        creatures[2] = new Cat(2,2);
+        creatures[0] = new Human(50, 3);
+        creatures[1] = new Robot(100, 5);
+        creatures[2] = new Cat(2, 2);
 
         Barrier[] barriers = new Barrier[8];
         barriers[0] = new Wall(1);
@@ -26,18 +26,18 @@ public class Main {
         barriers[6] = new Wall(6);
         barriers[7] = new Road(106);
 
-        for (Barrier barrier : barriers) {
-            for (Creature creature : creatures) {
-                if (creature.passBarrier(barrier)) {}
-                else continue;
+        for (Creature creature : creatures) {
+
+            if (creature.passBarrier(barriers)) System.out.println("Изи препятсвие");
+            else {
+                System.out.println("Он выбыл");
+                continue;
             }
+
         }
-
-        System.out.println("Количество преодоленных человеком препятствий: "+ Human.barrierPassedHuman);
-        System.out.println("Количество преодоленных котиком препятствий: "+ Cat.barrierPassedCat);
-        System.out.println("Количество преодоленных человеком препятствий: "+ Robot.barrierPassedRobot);
-
-
+        System.out.println("Количество преодоленных человеком препятствий: " + Human.barrierPassedHuman);
+        System.out.println("Количество преодоленных котиком препятствий: " + Cat.barrierPassedCat);
+        System.out.println("Количество преодоленных роботом препятствий: " + Robot.barrierPassedRobot);
 
     }
 }
