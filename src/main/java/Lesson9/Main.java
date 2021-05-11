@@ -21,10 +21,11 @@ public class Main {
 
         for (int i = 0; i < SIZE; i++) {
             for (int j = 0; j < SIZE; j++) {
-                strings[i][j] = String.valueOf(i*j);
+                strings[i][j] = String.valueOf(i * j);
             }
 
         }
+        //strings[1][0] = "Hi";
 
         int sum = 0;
 
@@ -33,18 +34,29 @@ public class Main {
             System.out.println("Сумма элементов массива = " + sum);
 
 
-        } catch (MyArrayDataException|MyArraySizeException e){
-            System.out.println(e);
-
-
-        } catch (Exception e) {
+        } catch (MyArrayDataException | MyArraySizeException e) {
             e.printStackTrace();
+
         }
-
-
     }
 
-    private static int calculateSum(String[][] strings) throws Exception {
-        return 0;
+    private static int calculateSum(String[][] strings) throws MyArraySizeException, MyArrayDataException {
+        int sum = 0;
+        for (int i = 0; i < strings.length; i++) {
+            if (strings.length != SIZE || strings[i].length != SIZE) {
+                throw new MyArraySizeException("Некорректный массив, должен быть[4][4]");
+            }
+            for (int j = 0; j < strings[i].length; j++) {
+                try {
+                    sum += Integer.parseInt(strings[i][j]);
+                } catch (NumberFormatException e) {
+                    throw new MyArrayDataException(i, j);
+                }
+            }
+        }
+        return sum;
     }
 }
+
+
+
