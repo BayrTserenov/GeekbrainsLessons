@@ -51,5 +51,14 @@ public class Human extends Creature implements PassingBarrier {
         }
         return false;
     }
+
+    @Override
+    public boolean passBarrier(Barrier[] barriers) {
+        for (Barrier barrier: barriers) {
+            if (!this.passBarrier(barrier)) return false;
+
+        }
+        return true;
+    }
 }
 
