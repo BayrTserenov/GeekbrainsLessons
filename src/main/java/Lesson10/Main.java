@@ -13,7 +13,6 @@
     Написать метод, который позволяет пересыпать фрукты из текущей коробки в другую (помним про сортировку фруктов: нельзя яблоки высыпать в коробку с апельсинами). Соответственно,
     в текущей коробке фруктов не остается, а в другую перекидываются объекты, которые были в этой коробке;
     Не забываем про метод добавления фрукта в коробку.
-
 */
 
 
@@ -31,7 +30,7 @@ public class Main {
         // 1. Написать метод, который меняет два элемента массива местами (массив может быть любого ссылочного типа);
 
         for (int i = 0; i < strings.length; i++) {
-            strings[i] = "v"+i;
+            strings[i] = "v" + i;
         }
         System.out.println((Arrays.toString(strings)));
         switchElements(strings, 2, 3);
@@ -52,9 +51,12 @@ public class Main {
         //    в текущей коробке фруктов не остается, а в другую перекидываются объекты, которые были в этой коробке;
         //    Не забываем про метод добавления фрукта в коробку.
 
-        Box box1 = new Box("Коробка для Коли");
-        box1.putFruit(new Apple());
-        box1.putFruit(new Orange());
+        Box<Apple> box1 = new Box();
+        box1.putFruit(new Apple(),10);
+        //box1.removeFruit(3);
+        System.out.println(box1.box.size());
+        //System.out.println(box1.getWeight());
+
 
 
     }
@@ -65,4 +67,6 @@ public class Main {
         objects[index1] = objects[index2];
         objects[index2] = temp;
     }
+
+
 }
