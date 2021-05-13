@@ -14,40 +14,60 @@ package Lesson10;
 
 import java.util.ArrayList;
 
-public class Box implements HasWeight {
-    Box(String boxID) {
-        BoxID = boxID;
+public class Box<T extends Fruit> {
+    public Box(){
+
     }
 
-    public String getBoxID() {
-        return BoxID;
+
+    public ArrayList<T> box;
+
+    public void putFruit(T fruit) {
+        box.add(fruit);
+
     }
 
-    public String BoxID;
+    ///Тут выдает ошибку, не пойму почему бокс null. :-(
+    public void putFruit(T fruit, int number) {
+        for (int i = 0; i < number; i++) {
+            box.add(fruit);
 
-    int fruitCount = 0;
-    private ArrayList<Fruit> fruits;
-
-    public void putFruit(Fruit fruit) {
-        this.fruits.add(fruit);
-        fruitCount++;
+        }
     }
 
-    public void removeFruit(Fruit fruit) {
-        if (fruitCount > 0) {
-            this.fruits.remove(fruit);
-            fruitCount--;
-        } else{
+    public void removeFruit() {
+        if (box.size() > 0) {
+            box.remove(this);
+
+        } else {
             System.out.println("В коробке пусто");
         }
     }
 
+    public void removeFruit(int number) {
+        if (number > box.size()) {
+            for (int i = 0; i < box.size(); i++) {
+                removeFruit();
+            }
+        } else {
+            for (int i = 0; i < number; i++) {
+                removeFruit();
+            }
+        }
 
-    @Override
+    }
+
     public float getWeight() {
-        float weight = this.getWeight()*fruitCount;
+        float weight = this.getWeight() * box.size();
         return weight;
     }
 
+    public void putAllToAnotherBox(Box <T>anotherBox){
+        anotherBox.box.addAll(box);
+        box.clear();
+    }
 
 }
+
+
+
