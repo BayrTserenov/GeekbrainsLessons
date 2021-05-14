@@ -20,7 +20,7 @@ public class Box<T extends Fruit> {
     }
 
 
-    public ArrayList<T> box;
+    public ArrayList<T> box = new ArrayList<>();
 
     public void putFruit(T fruit) {
         box.add(fruit);
