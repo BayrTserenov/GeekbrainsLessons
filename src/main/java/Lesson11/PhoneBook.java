@@ -1,7 +1,5 @@
 /*
-1. Создать массив с набором слов (10-20 слов, среди которых должны встречаться повторяющиеся).
-Найти и вывести список уникальных слов, из которых состоит массив (дубликаты не считаем).
-Посчитать, сколько раз встречается каждое слово.
+
 2. Написать простой класс ТелефонныйСправочник, который хранит в себе список фамилий и телефонных номеров.
 В этот телефонный справочник с помощью метода add() можно добавлять записи.
 С помощью метода get() искать номер телефона по фамилии.
@@ -17,11 +15,38 @@
 
 package Lesson11;
 
-import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.Map;
+import java.util.Set;
+import java.util.TreeMap;
 
-public class Main {
+public class PhoneBook implements IPhoneBook {
 
-    public static void main(String[] args) {
+    private final Map<String, Set<String>> sirnameAndPhones = new TreeMap<>();
 
+
+    @Override
+    public void add(String sirname, String phone) {
+        Set<String> phones = getPhones(sirname);
+
+    }
+
+    private Set<String> getPhones(String sirname) {
+
+        Set<String> phones = sirnameAndPhones.getOrDefault(sirname, new HashSet<>());
+        if (phones.isEmpty()) {
+            sirnameAndPhones.put(sirname, phones);
+        }
+        return phones;
+    }
+
+    @Override
+    public Set<String> get(String sirname) {
+        return getPhones(sirname);
+    }
+
+    @Override
+    public Set<String> getAllSurnames() {
+        return sirnameAndPhones.keySet();
     }
 }

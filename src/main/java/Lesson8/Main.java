@@ -10,6 +10,7 @@
 package Lesson8;
 
 public class Main {
+
     public static void main(String[] args) {
         Creature[] creatures = new Creature[3];
         creatures[0] = new Human(50, 3);
