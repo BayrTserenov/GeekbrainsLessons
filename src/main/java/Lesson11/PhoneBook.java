@@ -27,8 +27,18 @@ public class PhoneBook implements IPhoneBook {
 
     @Override
     public void add(String sirname, String phone) {
-        Set<String> phones = getPhones(sirname);
+        Set<String> phones = sirnameAndPhones.put(sirname,getPhones(phone));
 
+    }
+
+    @Override
+    public Set<String> get(String sirname) {
+        return sirnameAndPhones.get(sirname);
+    }
+
+    @Override
+    public Set<String> getAllSurnames() {
+        return sirnameAndPhones.keySet();
     }
 
     private Set<String> getPhones(String sirname) {
@@ -40,13 +50,4 @@ public class PhoneBook implements IPhoneBook {
         return phones;
     }
 
-    @Override
-    public Set<String> get(String sirname) {
-        return getPhones(sirname);
-    }
-
-    @Override
-    public Set<String> getAllSurnames() {
-        return sirnameAndPhones.keySet();
-    }
 }
